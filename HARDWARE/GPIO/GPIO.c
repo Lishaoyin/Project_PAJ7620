@@ -25,9 +25,9 @@ void LED_Twinkle(u16 Twinkle_Perid ,u8 Twinkle_Times)
 	u8 Times;
 	for(Times=0;Times<Twinkle_Times;Times++)
 	{
-		LED_OFF;
-		delay_ms(Twinkle_Perid/2);
 		LED_ON;
+		delay_ms(Twinkle_Perid/2);
+		LED_OFF;
 		delay_ms(Twinkle_Perid/2);
 	}
 }

@@ -36,7 +36,7 @@
 
 
 #endif
-
+extern u8 PAJ7620_Gesture1_Data;
 extern const unsigned char PAJ7620Global_InitArray[][2];
 extern const unsigned char PAJ7620Gesture_InitArray[][2];
 extern const unsigned char PAJ7620Proximity_InitArray[][2];
@@ -48,5 +48,5 @@ void PAJ7620_WakeUp(void);
 void PAJ7620_Init(u8 PAJ7620InitMode);
 void PAJ7620_IT1_Cmd(u8 PAJ7620Gesture_IT,FunctionalState NewState);
 void PAJ7620_IT2_Cmd(u8 PAJ7620Gesture_IT,FunctionalState NewState);
-u8 PAJ7620_Gesture1_Test(void);
-u8 PAJ7620_Gesture2_Test(void);
+u8 PAJ7620_Gesture1_Detected(void);
+u8 PAJ7620_Gesture2_Detected(void);

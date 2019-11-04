@@ -3,6 +3,8 @@
 #include "PAJ7620.h"
 #include "delay.h"
 
+u8 PAJ7620_Gesture1_Data;
+
 void PAJ7620_SendCommand(u8 Address,u8 Command)
 {
 	IIC_Start();
@@ -91,7 +93,7 @@ void PAJ7620_IT2_Cmd(u8 PAJ7620Gesture_IT,FunctionalState NewState)
 	PAJ7620_SelectBank(Bank0);
 }
 
-u8 PAJ7620_Gesture1_Test(void)
+u8 PAJ7620_Gesture1_Detected(void)
 {
 	u8 Gesture_Data;
 	Gesture_Data=PAJ7620_ReadData(0x43);
@@ -99,7 +101,7 @@ u8 PAJ7620_Gesture1_Test(void)
 	return Gesture_Data;
 }
 
-u8 PAJ7620_Gesture2_Test(void)
+u8 PAJ7620_Gesture2_Detected(void)
 {
 	u8 Gesture_Data;
 	Gesture_Data=PAJ7620_ReadData(0x44);

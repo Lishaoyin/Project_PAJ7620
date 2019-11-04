@@ -21,12 +21,7 @@ void EXTI3_IRQHandler(void)
 {
 	if(EXTI_GetITStatus(EXTI_Line3)!= RESET)
 	{
-		if(PAJ7620_Gesture1_Test()&Gesture_IT1_Up) LED_Twinkle(600,1);
-		else if(PAJ7620_Gesture1_Test()&Gesture_IT1_Down) LED_Twinkle(600,2);
-		else if(PAJ7620_Gesture1_Test()&Gesture_IT1_Left) LED_Twinkle(600,3);
-		else if(PAJ7620_Gesture1_Test()&Gesture_IT1_Right) LED_Twinkle(600,4);
-		else if(PAJ7620_Gesture1_Test()&Gesture_IT1_Forward) LED_Twinkle(600,5);
-		else if(PAJ7620_Gesture1_Test()&Gesture_IT1_Backward) LED_Twinkle(600,6);
 		EXTI_ClearITPendingBit(EXTI_Line3);
+	  PAJ7620_Gesture1_Data=PAJ7620_Gesture1_Detected();
 	}
 }

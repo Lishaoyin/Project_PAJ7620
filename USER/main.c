@@ -16,16 +16,37 @@ int main(void)
 	PAJ7620_Init(PAJ7620InitMode_Gesture);
 	LED_OFF;
 	PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
-/*	while(1)
+	while(1)
 	{
-		if(PAJ7620_Gesture1_Test()&Gesture1_Forward)
+		if(PAJ7620_Gesture1_Data&Gesture1_Up)
 		{
 			LED_ON;
+			PAJ7620_Gesture1_Data=0;
 		}
-		if(PAJ7620_Gesture1_Test()&Gesture1_Backward)
+		else if(PAJ7620_Gesture1_Data&Gesture1_Down)
 		{
-			LED_OFF;
+			LED_Twinkle(500,4);
+			PAJ7620_Gesture1_Data=0;
 		}
-	}*/
-	while(1);
+		else if(PAJ7620_Gesture1_Data&Gesture1_Left)
+		{
+			LED_Twinkle(400,5);
+			PAJ7620_Gesture1_Data=0;
+		}
+		else if(PAJ7620_Gesture1_Data&Gesture1_Right)
+		{
+			LED_Twinkle(300,7);
+			PAJ7620_Gesture1_Data=0;
+		}
+		else if(PAJ7620_Gesture1_Data&Gesture1_Forward)
+		{
+			LED_Twinkle(200,10);
+			PAJ7620_Gesture1_Data=0;
+		}
+		else if(PAJ7620_Gesture1_Data&Gesture1_Backward)
+		{
+			LED_Twinkle(100,20);
+			PAJ7620_Gesture1_Data=0;
+		}
+	}
 }
