@@ -7,7 +7,7 @@
 #include "EXTI.h"
 int main(void)
 {
-	delay_init();
+	delay_init(168);
 	NVIC_ConfigInit();
 	GPIO_ConfigInit();
 	EXTI_ConfigInit();
@@ -20,33 +20,50 @@ int main(void)
 	{
 		if(PAJ7620_Gesture1_Data&Gesture1_Up)
 		{
-			LED_ON;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			LED_Twinkle(1000,1);
 			PAJ7620_Gesture1_Data=0;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
 		else if(PAJ7620_Gesture1_Data&Gesture1_Down)
 		{
-			LED_Twinkle(500,4);
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+		  LED_Twinkle(1000,1);
+			LED_Twinkle(1000,1);
 			PAJ7620_Gesture1_Data=0;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
 		else if(PAJ7620_Gesture1_Data&Gesture1_Left)
 		{
-			LED_Twinkle(400,5);
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			LED_Twinkle(200,5);
 			PAJ7620_Gesture1_Data=0;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
 		else if(PAJ7620_Gesture1_Data&Gesture1_Right)
 		{
-			LED_Twinkle(300,7);
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			LED_Twinkle(200,5);
+			delay_ms(500);
+			LED_Twinkle(200,5);
 			PAJ7620_Gesture1_Data=0;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
 		else if(PAJ7620_Gesture1_Data&Gesture1_Forward)
 		{
-			LED_Twinkle(200,10);
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			LED_Twinkle(100,10);
 			PAJ7620_Gesture1_Data=0;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
 		else if(PAJ7620_Gesture1_Data&Gesture1_Backward)
 		{
-			LED_Twinkle(100,20);
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			LED_Twinkle(100,10);
+			delay_ms(500);
+			LED_Twinkle(100,10);
 			PAJ7620_Gesture1_Data=0;
+			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
 	}
 }

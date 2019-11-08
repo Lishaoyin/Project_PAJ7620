@@ -108,3 +108,4 @@ u8 PAJ7620_Gesture2_Detected(void)
 	PAJ7620_SelectBank(Bank0);
 	return Gesture_Data;
 }
+

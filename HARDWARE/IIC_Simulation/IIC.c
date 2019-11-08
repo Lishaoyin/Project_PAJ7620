@@ -126,7 +126,7 @@ void IIC_SendData_NoWait(u8 Data)
 		SCL_High;
 		delay_us(2);
 		SCL_Low;
-		delay_us(5);
+		delay_us(2);
 	}
 }
 u8 IIC_RecieveData_NoAck(void)
@@ -139,7 +139,7 @@ u8 IIC_RecieveData_NoAck(void)
 		delay_us(2);
 		if(SDA_Status) Data|=n;
 		SCL_Low;
-		delay_us(5);
+		delay_us(2);
 	}
 	return Data;
 }
