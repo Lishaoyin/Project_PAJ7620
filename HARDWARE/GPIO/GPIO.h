@@ -13,4 +13,4 @@
 #endif
 
 void GPIO_ConfigInit(void);
-void LED_Twinkle(u16 Twinkle_Perid ,u8 Twinkle_Times);
+void TIM_PWMOUT_GPIOInit(void);
