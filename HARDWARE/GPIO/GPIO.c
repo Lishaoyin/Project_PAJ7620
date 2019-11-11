@@ -20,7 +20,7 @@ void GPIO_ConfigInit(void)
 }
 
 //Init & config GPIO
-void TIM_PWMOUT_GPIOInit(void)
+void TIM4_PWMOUT_GPIOInit(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	

@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\FWLIB\inc;..\HARDWARE\Delay;..\HARDWARE\GPIO;..\HARDWARE\IIC_Simulation;..\HARDWARE\PAJ7620;..\SYSTEM;..\USER;..\HARDWARE\NVIC;..\HARDWARE\EXTI</IncludePath>
+              <IncludePath>..\CORE;..\FWLIB\inc;..\HARDWARE\Delay;..\HARDWARE\GPIO;..\HARDWARE\IIC_Simulation;..\HARDWARE\PAJ7620;..\SYSTEM;..\USER;..\HARDWARE\NVIC;..\HARDWARE\EXTI;..\HARDWARE\TIM_PWMOUT;..\HARDWARE\PWMDevice</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -517,6 +517,16 @@
               <FileName>EXTI.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\EXTI\EXTI.c</FilePath>
+            </File>
+            <File>
+              <FileName>TIM_PWMOUT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\TIM_PWMOUT\TIM_PWMOUT.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWMDevice.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PWMDevice\PWMDevice.c</FilePath>
             </File>
           </Files>
         </Group>

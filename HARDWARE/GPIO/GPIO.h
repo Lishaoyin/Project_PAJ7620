@@ -13,4 +13,4 @@
 #endif
 
 void GPIO_ConfigInit(void);
-void TIM_PWMOUT_GPIOInit(void);
+void TIM4_PWMOUT_GPIOInit(void);
