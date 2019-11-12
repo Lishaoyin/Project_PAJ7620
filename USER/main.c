@@ -31,9 +31,13 @@ int main(void)
 		if(PAJ7620_Gesture1_Data&Gesture1_Up)
 		{
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			
 			{
 				Steering_AngleGain(Steering1,-10);
+				TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel2,0.025+0.1*Steering_Angle1/180);
+			  TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel3,0.025+0.1*Steering_Angle2/180);
 			}
+			
 			PAJ7620_Gesture1_Data=0;
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
@@ -41,9 +45,13 @@ int main(void)
 		else if(PAJ7620_Gesture1_Data&Gesture1_Down)
 		{
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			
 			{
 				Steering_AngleGain(Steering1,10);
+				TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel2,0.025+0.1*Steering_Angle1/180);
+			  TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel3,0.025+0.1*Steering_Angle2/180);
 			}
+			
 			PAJ7620_Gesture1_Data=0;
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
@@ -51,9 +59,13 @@ int main(void)
 		else if(PAJ7620_Gesture1_Data&Gesture1_Left)
 		{
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			
 			{
 				Steering_AngleGain(Steering2,-10);
+				TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel2,0.025+0.1*Steering_Angle1/180);
+			  TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel3,0.025+0.1*Steering_Angle2/180);
 			}
+			
 			PAJ7620_Gesture1_Data=0;
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
@@ -61,9 +73,13 @@ int main(void)
 		else if(PAJ7620_Gesture1_Data&Gesture1_Right)
 		{
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			
 			{
 				Steering_AngleGain(Steering2,10);
+				TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel2,0.025+0.1*Steering_Angle1/180);
+			  TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel3,0.025+0.1*Steering_Angle2/180);
 			}
+			
 			PAJ7620_Gesture1_Data=0;
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
@@ -71,11 +87,11 @@ int main(void)
 		else if(PAJ7620_Gesture1_Data&Gesture1_Forward)
 		{
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			
 			{
 				
-				
-				
 			}
+			
 			PAJ7620_Gesture1_Data=0;
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
@@ -83,19 +99,14 @@ int main(void)
 		else if(PAJ7620_Gesture1_Data&Gesture1_Backward)
 		{
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,DISABLE);
+			
 			{
 				
-				
-				
 			}
+			
 			PAJ7620_Gesture1_Data=0;
 			PAJ7620_IT1_Cmd(Gesture_IT1_All,ENABLE);
 		}
-		
-		{
-			TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel2,0.025+0.1*Steering_Angle1/180);
-			TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel3,0.025+0.1*Steering_Angle2/180);
-	  }
 		
 	}
 }
