@@ -13,7 +13,7 @@ int main(void)
 	NVIC_ConfigInit();
 	
 	TIM4_PWMOUT_GPIOInit();
-	TIM4_PWMOUT_Init();
+	TIM_PWMOUT_Init(TIM4);
 	
 	EXTI_ConfigInit();
 	

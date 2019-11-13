@@ -4,32 +4,58 @@
 #include "GPIO.h" 
 
 //Init corresponding Timmer & Config PWM output
-void TIM4_PWMOUT_Init(void)
+void TIM_PWMOUT_Init(TIM_TypeDef *TIMx)
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;                  //This structure for Timmer
-	TIM_OCInitTypeDef  TIM_OCInitStructure;                             //This structure for PWMOUT
+	TIM_OCInitTypeDef  TIM_OCInitStructure;                             //This structure for PWMOUT 
+	uint32_t RCC_APBxPeriph_TIMx;
+	{
+	  if(TIMx == TIM2)     RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM2;
+	  else if(TIMx==TIM3)  RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM3;
+	  else if(TIMx==TIM4)  RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM4;
+	  else if(TIMx==TIM5)  RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM5;
+	  else if(TIMx==TIM9)  RCC_APBxPeriph_TIMx=RCC_APB2Periph_TIM9;
+	  else if(TIMx==TIM10) RCC_APBxPeriph_TIMx=RCC_APB2Periph_TIM10;
+	  else if(TIMx==TIM11) RCC_APBxPeriph_TIMx=RCC_APB2Periph_TIM11;
+	  else if(TIMx==TIM12) RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM12;
+	  else if(TIMx==TIM13) RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM13;
+	  else if(TIMx==TIM14) RCC_APBxPeriph_TIMx=RCC_APB1Periph_TIM14;
+	}
 	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4,ENABLE);   
+	if(TIMx==TIM2||TIMx==TIM3||TIMx==TIM4||TIMx==TIM5)
+	{
+		RCC_APB1PeriphClockCmd(RCC_APBxPeriph_TIMx,ENABLE);
+	}		
+	else if(TIMx==TIM9||TIMx==TIM10||TIMx==TIM11||TIMx==TIM12||TIMx==TIM13||TIMx==TIM14) 
+	{
+		RCC_APB2PeriphClockCmd(RCC_APBxPeriph_TIMx,ENABLE); 	
+	}
+	  
 	
 	TIM_TimeBaseInitStructure.TIM_Period=0; 	                          //Automatic reload value of counter(Arr)
 	TIM_TimeBaseInitStructure.TIM_Prescaler=0;                          //Prescaler value(Psc) Period(us)=(Arr+1)*(Psc+1)/(APB1_Clock Frequence(MHz))
 	TIM_TimeBaseInitStructure.TIM_CounterMode=TIM_CounterMode_Up;       //The Count mode of increase
 	TIM_TimeBaseInitStructure.TIM_ClockDivision=TIM_CKD_DIV1;
-	TIM_TimeBaseInit(TIM4,&TIM_TimeBaseInitStructure);                  //Init the Timmer
+	TIM_TimeBaseInit(TIMx,&TIM_TimeBaseInitStructure);                  //Init the Timmer
 	
 	TIM_OCInitStructure.TIM_OCMode=TIM_OCMode_PWM1;                     //PWM Mode1
 	TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_Low;              //Config the effective value(High or Low)
 	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;       //Enable the PWMOUT State
 	
 	{		
-	  TIM_OC2Init(TIM4, &TIM_OCInitStructure);
-	  TIM_OC3Init(TIM4, &TIM_OCInitStructure);                            //Init the Timmer PWMOUT            
-	  TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable); 
-	  TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);                   //Enable the Prescaler of The PWMOUT Channelx
+		TIM_OC1Init(TIMx, &TIM_OCInitStructure);
+		TIM_OC2Init(TIMx, &TIM_OCInitStructure);
+	  TIM_OC3Init(TIMx, &TIM_OCInitStructure);
+	  TIM_OC4Init(TIMx, &TIM_OCInitStructure);                            //Init the Timmer PWMOUT   
+
+		TIM_OC1PreloadConfig(TIMx, TIM_OCPreload_Enable);
+		TIM_OC2PreloadConfig(TIMx, TIM_OCPreload_Enable);
+	  TIM_OC3PreloadConfig(TIMx, TIM_OCPreload_Enable); 
+	  TIM_OC4PreloadConfig(TIMx, TIM_OCPreload_Enable);                   //Enable the Prescaler of The PWMOUT Channelx
 	}
 	
-	TIM4->CCER&=~(TIM_CCER_CC2E|TIM_CCER_CC3E);                         //Disable All PWMOUT_Channel
-	TIM_Cmd(TIM4,ENABLE); 
+	TIMx->CCER&=~(TIM_CCER_CC1E|TIM_CCER_CC2E|TIM_CCER_CC3E|TIM_CCER_CC4E);                         //Disable All PWMOUT_Channel
+	TIM_Cmd(TIMx,ENABLE); 
 }
 
 //Set Arr & Psc of the Timmer
