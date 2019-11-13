@@ -1,7 +1,5 @@
 #include "stm32f4xx.h"
-#include "delay.h"
 #include "TIM_PWMOUT.h"
-#include "GPIO.h" 
 
 //Init corresponding Timmer & Config PWM output
 void TIM_PWMOUT_Init(TIM_TypeDef *TIMx)
