@@ -33,6 +33,10 @@ int main(void)
 	
 	GPIO_ConfigInit();
 	
+	TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel2,0.025+0.1*Steering_Angle1/180);
+	TIM_PWMOUT_SetDutyCycle(TIM4,TIM_PWMOUT_Channel3,0.025+0.1*Steering_Angle2/180);
+	TIM_PWMOUT_SetDutyCycle(TIM3,TIM_PWMOUT_Channel1,LED_Brightness/100.0);
+	
 	while(1)
 	{
 		if(PAJ7620_Gesture1_Data&Gesture1_Up)
