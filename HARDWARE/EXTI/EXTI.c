@@ -7,9 +7,9 @@ void EXTI_ConfigInit(void)
 {
 	EXTI_InitTypeDef EXTI_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG,ENABLE);
-	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC,EXTI_PinSource3);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOB,EXTI_PinSource2);
 	
-	EXTI_InitStructure.EXTI_Line=EXTI_Line3;
+	EXTI_InitStructure.EXTI_Line=EXTI_Line2;
 	EXTI_InitStructure.EXTI_Mode=EXTI_Mode_Interrupt;
 	EXTI_InitStructure.EXTI_Trigger=EXTI_Trigger_Falling;
 	EXTI_InitStructure.EXTI_LineCmd=ENABLE;
@@ -17,11 +17,14 @@ void EXTI_ConfigInit(void)
 	EXTI_Init(&EXTI_InitStructure);
 }
 
-void EXTI3_IRQHandler(void)
+void EXTI2_IRQHandler(void)
 {
-	if(EXTI_GetITStatus(EXTI_Line3)!= RESET)
+	if(EXTI_GetITStatus(EXTI_Line2)!= RESET)
 	{
-		EXTI_ClearITPendingBit(EXTI_Line3);
+		EXTI_ClearITPendingBit(EXTI_Line2);
 	  PAJ7620_Gesture1_Data=PAJ7620_Gesture1_Detected();
 	}
+	PilotLED_ON;
+	delay_ms(100);
+	PilotLED_OFF;
 }

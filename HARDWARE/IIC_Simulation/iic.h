@@ -3,11 +3,13 @@
 #ifndef _IIC_H
 #define _IIC_H
 
-#define IIC_SCL_Port GPIOC
-#define IIC_SCL_Pin GPIO_Pin_2
-#define IIC_SDA_Port GPIOC
+#define Delay delay_us(2)
+
+#define IIC_SCL_Port GPIOB
+#define IIC_SCL_Pin GPIO_Pin_0
+#define IIC_SDA_Port GPIOB
 #define IIC_SDA_Pin GPIO_Pin_1
-#define IIC_PeriphClock RCC_AHB1Periph_GPIOC
+#define IIC_PeriphClock RCC_AHB1Periph_GPIOB
 
 #define SDA_High GPIO_SetBits(IIC_SDA_Port,IIC_SDA_Pin)
 #define SDA_Low GPIO_ResetBits(IIC_SDA_Port,IIC_SDA_Pin)

@@ -14,9 +14,8 @@
 
 extern short Steering_Angle1;
 extern short Steering_Angle2;
-extern u32 LED_Brightness1;
-extern u32 LED_Brightness2;
+extern short LED_Brightness;
 
 void Steering_AngleGain(u8 Steeringx,short Angle_Gain);
-void LED_BrightnessGain(u8 LEDx,u32 Brightness_Gain);
+void LED_BrightnessGain(short Brightness_Gain);
 

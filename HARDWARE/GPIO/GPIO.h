@@ -6,11 +6,12 @@
 #ifndef _GPIO_H
 #define _GPIO_H
 
-#define LED_OFF GPIO_SetBits(GPIOC,GPIO_Pin_0)
-#define LED_ON GPIO_ResetBits(GPIOC,GPIO_Pin_0)
+#define PilotLED_ON GPIO_ResetBits(GPIOA,GPIO_Pin_4)
+#define PilotLED_OFF GPIO_SetBits(GPIOA,GPIO_Pin_4)
 
 
 #endif
 
 void GPIO_ConfigInit(void);
 void TIM4_PWMOUT_GPIOInit(void);
+void TIM3_PWMOUT_GPIOInit(void);

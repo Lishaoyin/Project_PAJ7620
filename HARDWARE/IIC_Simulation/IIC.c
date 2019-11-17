@@ -41,49 +41,49 @@ void IIC_Start(void)
 	SDA_Mode(SDA_Mode_Out);
 	SDA_High;
 	SCL_High;
-	delay_us(2);
+	Delay;
 	SDA_Low;
-	delay_us(2);
+	Delay;
 	SCL_Low;
-	delay_us(2);
+	Delay;
 }
 void IIC_Stop(void)
 {
 	SDA_Mode(SDA_Mode_Out);
 	SDA_Low;
 	SCL_High;
-	delay_us(2);
+	Delay;
 	SDA_High;
-	delay_us(2);
+	Delay;
 	SCL_Low;
-	delay_us(2);
+	Delay;
 }
 u8 IIC_CheckAck(void)
 {
 	u8 WaitTime=0;
 	SDA_Mode(SDA_Mode_In);
 	SCL_High;
-	delay_us(2);
+	Delay;
 	while(SDA_Status)
 	{
 		if(WaitTime==250) return AckError;
 		WaitTime++;
 	}
 	SCL_Low;
-	delay_us(2);
+	Delay;
 	return AckChecked;
 }
 void IIC_SendAck(u8 Ack)
 {
-	delay_us(2);
+	Delay;
 	SDA_Mode(SDA_Mode_Out);
 	if(Ack==ACK) SDA_Low;
 	else if(Ack==NACK) SDA_High;
-	delay_us(2);
+	Delay;
 	SCL_High;
-	delay_us(2);
+	Delay;
 	SCL_Low;
-	delay_us(2);
+	Delay;
 }
 void IIC_SendData(u8 Data)
 {
@@ -94,9 +94,9 @@ void IIC_SendData(u8 Data)
 		if(Data&n) SDA_High;
 		else SDA_Low;
 		SCL_High;
-		delay_us(2);
+		Delay;
 		SCL_Low;
-		delay_us(2);
+		Delay;
 	}
 	while(IIC_CheckAck()==AckError);
 }
@@ -107,10 +107,10 @@ u8 IIC_RecieveData(u8 Ack)
 	for(n=0x80;n>0;n>>=1)
 	{
 		SCL_High;
-		delay_us(2);
+		Delay;
 		if(SDA_Status) Data|=n;
 		SCL_Low;
-		delay_us(2);
+		Delay;
 	}
 	IIC_SendAck(Ack);
 	return Data;
@@ -124,9 +124,9 @@ void IIC_SendData_NoWait(u8 Data)
 		if(Data&n) SDA_High;
 		else SDA_Low;
 		SCL_High;
-		delay_us(2);
+		Delay;
 		SCL_Low;
-		delay_us(2);
+		Delay;
 	}
 }
 u8 IIC_RecieveData_NoAck(void)
@@ -136,10 +136,10 @@ u8 IIC_RecieveData_NoAck(void)
 	for(n=0x80;n>0;n>>=1)
 	{
 		SCL_High;
-		delay_us(2);
+		Delay;
 		if(SDA_Status) Data|=n;
 		SCL_Low;
-		delay_us(2);
+		Delay;
 	}
 	return Data;
 }

@@ -4,8 +4,7 @@
 
 short Steering_Angle1=90;
 short Steering_Angle2=90;
-u32 LED_Brightness1=0;
-u32 LED_Brightness2=0;
+short LED_Brightness=50;
 
 void Steering_AngleGain(u8 Steeringx,short Angle_Gain)
 {
@@ -21,8 +20,8 @@ void Steering_AngleGain(u8 Steeringx,short Angle_Gain)
 	}
 }
 
-void LED_BrightnessGain(u8 LEDx,u32 Brightness_Gain)
+void LED_BrightnessGain(short Brightness_Gain)
 {
-	if(LEDx & LED1) LED_Brightness1=LED_Brightness1+Brightness_Gain;
-	if(LEDx & LED2) LED_Brightness2=LED_Brightness1+Brightness_Gain;
+	if(LED_Brightness+Brightness_Gain<0 || LED_Brightness+Brightness_Gain>100) return;
+	LED_Brightness=LED_Brightness+Brightness_Gain;
 }
